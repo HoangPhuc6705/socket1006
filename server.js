@@ -79,9 +79,15 @@ wss.on('connection', (ws) => {
 })
 
 const PORT = process.env.PORT || 8080
-app.listen(PORT, () => {
-  console.log('Sever is listening on port', PORT);
-  mongoose.connect(process.env.MONGODB_URI)
+
+app.listen(PORT, (err, res) => {
+  if (err) {
+      console.log(err)
+      return res.status(500).send(err.message)
+  } else {
+      console.log('[INFO] Server Running on port:', port)
+      mongoose.connect(process.env.MONGODB_URI)
     .then(() => console.log('connected to db'))
     .catch(error => console.log('Error to cn db:', error))
+  }
 })

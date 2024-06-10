@@ -85,7 +85,7 @@ app.listen(PORT, (err, res) => {
       console.log(err)
       return res.status(500).send(err.message)
   } else {
-      console.log('[INFO] Server Running on port:', port)
+      console.log('[INFO] Server Running on port:', PORT)
       mongoose.connect(process.env.MONGODB_URI)
     .then(() => console.log('connected to db'))
     .catch(error => console.log('Error to cn db:', error))

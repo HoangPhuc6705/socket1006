@@ -1,6 +1,5 @@
 require('dotenv').config()
 const express = require('express')
-const WebSocket = require('ws')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const bodyParser = require('body-parser')
@@ -58,26 +57,6 @@ app.get('/', (req, res) => {
   res.json('Hello world')
 })
 
-const wss = new WebSocket.Server({ port: 5000 });
-console.log('Websocket server is running on PORT 5000');
-
-const client = []
-wss.on('connection', (ws) => {
-  console.log('A new client connected')
-
-  client.push(ws)
-
-  ws.on('message', message => {
-    console.log('Received:', message.toString());
-
-    client.forEach(conn => {
-      if (conn !== ws && conn.readyState === WebSocket.OPEN) {
-        conn.send(message.toString());
-      }
-    })
-  })
-})
-
 const PORT = process.env.PORT || 8080
 
 app.listen(PORT, (err, res) => {
@@ -88,6 +67,6 @@ app.listen(PORT, (err, res) => {
       console.log('[INFO] Server Running on port:', PORT)
       mongoose.connect(process.env.MONGODB_URI)
     .then(() => console.log('connected to db'))
-    .catch(error => console.log('Error to cn db:', error))
+    .catch(error => console.log('Error to connect to db:', error))
   }
 })

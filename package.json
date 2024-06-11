@@ -1,10 +1,10 @@
 {
-  "name": "10062005express",
+  "name": "10062005socket",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "socket.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node socket.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
